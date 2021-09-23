@@ -1,0 +1,328 @@
+/* Set variables */
+:root {
+  --white: #FAFAFA;
+  --black: #1E1E1E;
+  --red: #D00000;
+  --blue: #2196f3;
+  --green: #31cb00;
+  --orange: #fb8500;
+  --light-orange: #fca311;
+  --dark-blue: #0077b6;
+  --light-blue: #43a5eb;
+  --margin: 1rem;
+}
+
+/* ============= */
+body {
+  font-family: Poppins, Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Snap bars */
+#horizontal-bar, #vertical-bar {
+  position: absolute;
+  border: 1px solid var(--white);
+}
+
+#horizontal-bar.hidden,
+#vertical-bar.hidden {
+  display: none;
+}
+
+#horizontal-bar {
+  z-index: -10;
+  width: 100vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#vertical-bar {
+  height: 100vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ========= */
+/* Status items */
+.status {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000096;
+  border-radius: 50%;
+  overflow: hidden;
+  /* Color of the status bars */
+  /* ======================== */
+}
+.status .icon {
+  position: absolute;
+  z-index: 1;
+  fill: var(--white);
+}
+.status .status-bar {
+  position: relative;
+  margin-top: auto;
+  width: 100%;
+  height: 0%;
+  transition: height 0.3s linear;
+}
+.status .status-bar.red {
+  background-color: var(--red);
+}
+.status .status-bar.blue {
+  background-color: var(--blue);
+}
+.status .status-bar.green {
+  background-color: var(--green);
+}
+.status .status-bar.orange {
+  background-color: var(--orange);
+}
+.status .status-bar.light-orange {
+  background-color: var(--light-orange);
+}
+.status .status-bar.dark-blue {
+  background-color: var(--dark-blue);
+}
+.status .status-bar.light-blue {
+  background-color: var(--light-blue);
+}
+
+.status:not(.hidden) ~ .status:not(.hidden) {
+  margin-top: 0.5rem;
+}
+
+.status.hidden {
+  display: none;
+}
+
+/* ============ */
+/* Status groups */
+.group {
+  z-index: -10;
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  cursor: move;
+}
+
+.group:active {
+  /*background: #1E1E1E80;*/
+  opacity: .6;
+}
+
+.group, .group.vertical {
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.group.vertical-reverse {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.group.horizontal {
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+.group.horizontal-reverse {
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.group.horizontal-reverse .status:not(.hidden) ~ .status:not(.hidden),
+.group.horizontal .status:not(.hidden) ~ .status:not(.hidden) {
+  margin-top: 0;
+}
+
+.group.horizontal-reverse .status,
+.group.horizontal .status {
+  margin-right: 0.5rem;
+}
+
+.group.horizontal .status:last-child {
+  margin-right: 0;
+}
+
+.group:hover .btn-rotate {
+  display: inline-flex;
+}
+
+.group .btn-rotate {
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  outline: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-progress-appearance: none;
+}
+
+.group .btn-rotate .icon {
+  fill: var(--white);
+  width: 16px;
+}
+
+/* ============= */
+/* Vehicle */
+#speedometer-bar {
+  fill: none;
+  stroke-linecap: round;
+}
+
+#vehicle.active {
+  display: flex;
+}
+
+#vehicle {
+  display: none;
+  position: absolute;
+  transform: translate(calc(50vw - 50%), calc(100vh - 100%));
+}
+#vehicle .status {
+  margin: 0;
+}
+#vehicle #seatbelt .status-bar {
+  height: 100%;
+}
+#vehicle #svg-speedometer {
+  margin: auto 1rem;
+  display: block;
+  overflow: visible;
+  font-weight: bolder;
+}
+#vehicle #svg-speedometer use {
+  stroke-width: 12;
+  transform: translate(5px, 5px);
+}
+#vehicle #svg-speedometer text {
+  text-align: center;
+  fill: white;
+  font-weight: bolder;
+}
+#vehicle #svg-speedometer .bg-bar {
+  stroke: rgba(0, 0, 0, 0.4);
+}
+#vehicle #svg-speedometer .front-bar {
+  stroke: white;
+  stroke-dasharray: 265;
+  stroke-dashoffset: 265;
+}
+#vehicle #svg-speedometer #speed {
+  transform: translate(50%, 44%);
+  font-size: 1.6rem;
+}
+#vehicle #svg-speedometer #kmph {
+  font-size: 0.9rem;
+  transform: translate(50%, 64%);
+}
+#vehicle #svg-speedometer #gear-bg {
+  transform: translate(calc(25% + 4px), calc(75% + 6px));
+  fill: rgba(0, 0, 0, 0.4);
+}
+#vehicle #svg-speedometer #gear {
+  transform: translate(calc(50%), calc(94% + 1px));
+}
+
+/* =================== */
+/* Player */
+#player {
+  transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+}
+
+/* ====== */
+/* Setting icons size */
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+#food .icon,
+#stamina .icon {
+  width: 28px;
+  height: 28px;
+}
+
+#drink .icon,
+#fuel .icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* ================== */
+/* Elements position */
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.top, .bottom {
+  flex-direction: row;
+}
+
+.left, .right {
+  flex-direction: column;
+}
+
+.top.center,
+.bottom.center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left.center,
+.right.center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ================== */
+/* Style for debugging */
+body[debug] {
+  background: var(--black);
+}
+body[debug] #horizontal-bar.hidden,
+body[debug] #vertical-bar.hidden {
+  display: initial;
+}
+body[debug] .status .status-bar {
+  height: 50%;
+}
+body[debug] #vehicle {
+  display: flex;
+}
+body[debug] .status.hidden {
+  display: flex;
+}
+body[debug] #vehicle {
+  position: absolute;
+}
+body[debug] #vehicle #svg-speedometer .front-bar {
+  stroke-dashoffset: 80;
+}
+
+/* =================== */
+
+/*# sourceMappingURL=style.css.map */
