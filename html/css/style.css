@@ -10,12 +10,14 @@
   --dark-blue: #0077b6;
   --light-blue: #43a5eb;
   --margin: 1rem;
+  --status-margin: 0.5rem;
 }
 
 /* ============= */
 body {
   font-family: Poppins, Arial, sans-serif;
   font-size: 16px;
+  overflow: hidden;
 }
 
 /* Snap bars */
@@ -91,7 +93,7 @@ body {
 }
 
 .status:not(.hidden) ~ .status:not(.hidden) {
-  margin-top: 0.5rem;
+  margin-top: var(--status-margin);
 }
 
 .status.hidden {
@@ -110,8 +112,7 @@ body {
 }
 
 .group:active {
-  /*background: #1E1E1E80;*/
-  opacity: .6;
+  background: #1E1E1E80;
 }
 
 .group, .group.vertical {
