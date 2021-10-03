@@ -1,5 +1,5 @@
 # FiveM HUD
-This HUD for FiveM displays information about the vehicle and the player's character
+This HUD for FiveM (GTA V) displays information about vehicles and the player's character
 
 ## Features
 - Move the groups of the HUD (vehicle and character information)
